@@ -13,17 +13,24 @@ const NewsList = () => {
     }, []);
 
     return (
-        <div>
-            <h1>Top News</h1>
-            <ul>
+        <div className="container mt-4">
+            <h1 className="text-center mb-4">Top News</h1>
+            <div className="row">
                 {news.map((article, index) => (
-                    <li key={index}>
-                        <h2>{article.title}</h2>
-                        <p>{article.description}</p>
-                        <a href={article.url} target="_blank" rel="noopener noreferrer">Read more</a>
-                    </li>
+                    <div key={index} className="col-md-4 mb-4">
+                        <div className="card h-100">
+                            <img src={article.urlToImage} className="card-img-top" alt={article.title} />
+                            <div className="card-body">
+                                <h5 className="card-title">{article.title}</h5>
+                                <p className="card-text">{article.description}</p>
+                                <a href={article.url} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+                                    Read more
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };
