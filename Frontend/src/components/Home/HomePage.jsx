@@ -8,7 +8,7 @@ export default function HomePage() {
 
     useEffect(() => {
         const getFirstNews = async () => {
-            const data = await fetchNews('technology'); // Request technology news from the API
+            const data = await fetchNews('entertainment'); // Request technology news from the API
             // Select the first article if available
             const firstArticle = data.articles[0];
             setFirstNews(firstArticle);
@@ -33,7 +33,7 @@ export default function HomePage() {
                         {/* Left side: Image */}
                         <div className="col-md-6 p-0 first-img-div rounded-3">
                             <img
-                                src={firstNews.urlToImage}
+                                src={firstNews.image}
                                 alt={firstNews.title}
                                 className="img-fluid"
                                 style={{ height: '100%', objectFit: 'cover' }}
@@ -44,7 +44,7 @@ export default function HomePage() {
                         <div className="col-md-6 d-flex flex-column justify-content-between p-4">
                             <div>
                                 <h3 className="first-news-title mb-3">{firstNews.title}</h3>
-                                <p className="first-news-description">{firstNews.description}</p>
+                                <p className="first-news-description">{firstNews.text}</p>
                             </div>
                             <a
                                 href={firstNews.url}

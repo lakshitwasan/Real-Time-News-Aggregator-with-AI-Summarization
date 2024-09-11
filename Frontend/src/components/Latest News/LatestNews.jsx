@@ -7,12 +7,12 @@ const LatestNews = () => {
 
     useEffect(() => {
         const getNews = async () => {
-            const data = await fetchNews();
+            const data = await fetchNews('sports');
             // Trim article descriptions to 20 words and titles to 10 words for consistency
             const trimmedNews = data.articles.slice(0, 8).map(article => ({
                 ...article,
                 title: article.title.split(" ").slice(0, 10).join(" ") + "...",
-                description: article.description.split(" ").slice(0, 20).join(" ") + "..."
+                description: article.text.split(" ").slice(0, 20).join(" ") + "..."
             }));
             setLatestNews(trimmedNews);
         };
@@ -31,7 +31,7 @@ const LatestNews = () => {
                     <div key={index} className="col-md-3 mb-4">
                         <div className="card h-100" style={{ minHeight: '380px' }}>
                             <img
-                                src={article.urlToImage}
+                                src={article.image}
                                 className="card-img-top"
                                 alt={article.title}
                                 style={{ height: '150px', objectFit: 'cover' }}

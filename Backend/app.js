@@ -1,44 +1,55 @@
 require("dotenv").config();
 const express = require("express");
-const app = express();
 const axios = require("axios");
-const cors = require('cors');
+const cors = require("cors");
 
-const PORT = process.env.PORT;
+const app = express();
+const PORT = process.env.PORT || 5000; // Default to port 5000 if not in .env
 
 app.use(cors());
 
 // API FETCHING
 app.get("/news", async (req, res) => {
     try {
-        // Default to 'general' category if not provided
-        const category = req.query.category || "general";
-
-        const response = await axios.get(`https://newsapi.org/v2/top-headlines`, {
+        // API call with dynamic category and additional parameters
+        const response = await axios.get("https://api.worldnewsapi.com/search-news", {
+            headers: {
+                "x-api-key": process.env.NEWS_API_KEY
+            },
             params: {
-                country: "us",
-                category: category,
-                apiKey: process.env.NEWS_API_KEY
+                categories: req.query.category,
+                language: "en", // Language of the articles
+                source_countries: "US", // Example source country
+                number: 10, // Number of articles to fetch
             }
         });
 
-        // Filter out articles that don't have valid images
-        const filteredArticles = response.data.articles.filter(article => article.urlToImage && article.urlToImage !== "");
+        console.log("_________________________________")
+        console.log(response)
+        console.log("_________________________________")
 
-        // Send only filtered articles to the frontend
-        res.json({
-            status: response.data.status,
-            totalResults: filteredArticles.length,
-            articles: filteredArticles
-        });
+        // Check if valid news data exists
+        if (response.data && response.data.news) {
+            const filteredArticles = response.data.news.filter(
+                (article) => article.image && article.image !== ""
+            );
+
+            res.json({
+                status: "success",
+                totalResults: filteredArticles.length,
+                articles: filteredArticles
+            });
+        } else {
+            res.status(404).json({ message: "No articles found" });
+        }
     } catch (e) {
-        console.error("Error fetching news:", e);
-        res.status(500).send("Error fetching news");
+        console.error("Error fetching news:", e.message || e);
+        res.status(500).json({ message: "Error fetching news" });
     }
 });
 
 // Root route to confirm backend is running
-app.get('/', (req, res) => {
+app.get("/", (req, res) => {
     res.send("Backend is running");
 });
 

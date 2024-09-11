@@ -19,6 +19,26 @@
     font-weight: 600;
 }
 
+.first-img-div {
+    height: 100%;
+    /* Ensure the container takes the full height of the card */
+    overflow: hidden;
+    /* Hide any overflowing content */
+    display: flex;
+    /* Use flexbox for centering */
+    align-items: center;
+    /* Center the image vertically */
+}
+
+.first-img-div img {
+    object-fit: cover;
+    /* Ensure the image covers the container */
+    height: 100%;
+    /* Take the full height of the container */
+    width: 100%;
+    /* Take the full width of the container */
+}
+
 .welcome-quote span {
     color: #ff0000;
 }
@@ -29,14 +49,7 @@
     display: flex;
     align-items: center;
     height: 300px;
-}
-
-
-.horizontal-news-card img {
-    border-radius: 10px;
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
+    /* Set a fixed height for the card */
 }
 
 .first-news-title {

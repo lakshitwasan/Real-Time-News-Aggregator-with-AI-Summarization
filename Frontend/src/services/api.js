@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const fetchNews = async (category = 'general') => {
+export const fetchNews = async (category) => {
     try {
         const response = await axios.get('http://localhost:5000/news', {
             params: {
-                category: category
+                categories: category,
             }
         });
         return response.data;
