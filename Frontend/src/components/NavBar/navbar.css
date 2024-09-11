@@ -1,0 +1,39 @@
+.navbar {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    background-color: white;
+}
+
+.navbar-title {
+    text-decoration: none;
+}
+
+.navbar-brand-text {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-divider {
+    color: #ccc;
+    margin-left: 10px;
+    margin-right: 20px;
+    /* Adds more space between the title and the | */
+}
+
+.navbar-links .nav-item-link {
+    font-size: 0.9rem;
+    /* Reduce font size of the links */
+    margin-right: 15px;
+    /* Adds space between the links */
+}
+
+.navbar-right {
+    margin-right: 10px;
+    /* Adjust right side profile spacing */
+}
+
+.navbar-title {
+    margin-left: 10px;
+    /* Adjust left side brand spacing */
+}

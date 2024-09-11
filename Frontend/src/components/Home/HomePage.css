@@ -1,22 +1,72 @@
 .welcome-box {
-    background-color: #f8f9fa;
-    /* Light grey background */
-    border: 2px solid #e0e0e0;
-    /* Subtle border */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff6f6 !important;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.welcome-box-header {
+    font-size: 1rem;
+    letter-spacing: 2px;
 }
 
 .bulletin-red {
     color: #ff0000;
-    /* Bulletin red color */
 }
 
-h1 {
-    font-weight: bold;
-    margin-bottom: 20px;
+.welcome-quote {
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
-.lead {
+.welcome-quote span {
+    color: #ff0000;
+}
+
+.horizontal-news-card {
+    border: none;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    height: 300px;
+}
+
+
+.horizontal-news-card img {
+    border-radius: 10px;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.first-news-title {
     font-size: 1.5rem;
+    font-weight: bold;
+    color: black;
+    text-align: left;
+    margin-bottom: 1rem;
+}
+
+.first-news-description {
+    font-size: 1rem;
+    color: black;
+    text-align: justify;
+    margin-bottom: 1.5rem;
+}
+
+.btn-theme {
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+    font-weight: bold;
+    font-size: 0.85rem;
+    padding: 8px;
+    margin-top: auto;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-theme:hover {
+    background-color: red;
+    color: white;
 }

@@ -1,0 +1,27 @@
+.btn-theme {
+    background-color: white !important;
+    transition: 0.3s !important;
+    border-color: red !important;
+}
+
+.btn-theme:hover {
+    background-color: red !important;
+    color: white !important;
+    border-color: red !important;
+}
+
+.card-title {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.card-text {
+    text-align: justify;
+    /* Ensure the description text is justified */
+    font-size: 0.95rem;
+}
+
+.see-all-link:hover {
+    text-decoration: underline;
+}

@@ -1,30 +1,31 @@
 import React from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { FaBell, FaUserCircle } from 'react-icons/fa';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
+import './navbar.css';
 
 const NavBar = () => {
     return (
-        <Navbar bg="light" expand="lg" className="fixed-top">
+        <Navbar expand="lg" className="fixed-top">
             <Container>
                 {/* Left Side: Page Name */}
-                <Navbar.Brand className="d-flex align-items-center">
-                    <Link to="/" style={{ textDecoration: 'none' }}>
-                        <span style={{ color: 'red', fontWeight: 'bold', fontSize: '1.5rem' }}>Bulletin</span>
+                <Navbar.Brand className="d-flex align-items-center justify-content-start">
+                    <Link to="/" className="navbar-title">
+                        <span className="navbar-brand-text">Bulletin</span>
                     </Link>
-                    <span className="mx-2" style={{ color: '#ccc' }}>|</span>
-                    <Nav className="me-auto">
+                    <span className="mx-2 navbar-divider">|</span>
+                    <Nav className="navbar-links">
                         {/* LINKING */}
-                        <Nav.Link as={Link} to="/world">World</Nav.Link>
-                        <Nav.Link as={Link} to="/technology">Technology</Nav.Link>
-                        <Nav.Link as={Link} to="/sports">Sports</Nav.Link>
+                        <Nav.Link as={Link} to="/world" className="nav-item-link">World</Nav.Link>
+                        <Nav.Link as={Link} to="/technology" className="nav-item-link">Technology</Nav.Link>
+                        <Nav.Link as={Link} to="/sports" className="nav-item-link">Sports</Nav.Link>
                     </Nav>
                 </Navbar.Brand>
 
                 {/* Right Side: Notification and Profile Icon */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ms-auto d-flex align-items-center">
+                    <Nav className="ms-auto d-flex align-items-center justify-content-end navbar-right">
                         {/* Notification Icon */}
                         <Nav.Link href="#notifications">
                             <FaBell size={24} />

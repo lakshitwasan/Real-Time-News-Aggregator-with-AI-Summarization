@@ -11,10 +11,13 @@ app.use(cors());
 // API FETCHING
 app.get("/news", async (req, res) => {
     try {
+        // Default to 'general' category if not provided
+        const category = req.query.category || "general";
+
         const response = await axios.get(`https://newsapi.org/v2/top-headlines`, {
             params: {
                 country: "us",
-                category: "general",
+                category: category,
                 apiKey: process.env.NEWS_API_KEY
             }
         });
