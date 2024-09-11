@@ -1,0 +1,22 @@
+.welcome-box {
+    background-color: #f8f9fa;
+    /* Light grey background */
+    border: 2px solid #e0e0e0;
+    /* Subtle border */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.bulletin-red {
+    color: #ff0000;
+    /* Bulletin red color */
+}
+
+h1 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.lead {
+    font-size: 1.5rem;
+}

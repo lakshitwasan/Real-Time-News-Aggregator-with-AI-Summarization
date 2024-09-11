@@ -1,0 +1,63 @@
+.latest-news-section {
+    position: relative;
+}
+
+.carousel-item {
+    padding: 0 10px;
+    /* Adjust if needed to add space around carousel items */
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Dark background for visibility */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+
+.carousel-control-prev {
+    left: 0;
+}
+
+.carousel-control-next {
+    right: 0;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: red;
+    /* Change the color on hover */
+}
+
+.carousel-indicators [data-bs-target] {
+    background-color: black;
+    /* Change the dots color to black */
+}
+
+.carousel-indicators .active {
+    background-color: red;
+    /* Change the active dot color to red */
+}
+
+/* Ensure all cards have the same height */
+.card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    flex-grow: 1;
+}
+
+.card-img-top {
+    object-fit: cover;
+    height: 200px;
+    /* Set a fixed height for images */
+}
