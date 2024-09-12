@@ -1,0 +1,122 @@
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem;
+    background-color: #fff;
+    /* Set background to white */
+    border-top: 2px solid black;
+    /* Add black upper border */
+    margin-top: auto;
+    flex-wrap: wrap;
+    position: relative;
+    /* Allows positioning elements inside the footer */
+}
+
+/* Left Side Styling */
+.footer-left {
+    width: 30%;
+    /* Left side occupies 30% */
+    text-align: left;
+    /* Ensures elements are spaced */
+}
+
+.footer-website-name {
+    color: red;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.footer-quote {
+    color: black;
+    /* Quote color to black */
+    font-size: 1rem;
+    /* Smaller font size for the quote */
+    margin-bottom: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons i {
+    font-size: 1.5rem;
+    color: red;
+}
+
+.footer-copyright {
+    color: black;
+    font-size: 0.9rem;
+    /* Smaller text for copyright */
+    position: absolute;
+    /* To ensure it's placed at the bottom */
+    bottom: 1rem;
+    /* Ensures it's at the bottom */
+    left: 2rem;
+    /* Align it to the left */
+}
+
+/* Right Side Styling */
+.footer-right {
+    width: 70%;
+    /* Right side occupies 70% */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.footer-category {
+    flex: 1;
+    /* Make categories flexible and take equal width */
+}
+
+.footer-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: black;
+    text-align: left;
+    padding-left: 0;
+    /* Align with subheadings */
+}
+
+.footer-heading a {
+    color: black;
+    text-decoration: none;
+}
+
+.footer-heading a:hover {
+    color: red;
+    /* Change heading to red on hover */
+}
+
+.footer-subheadings {
+    padding-left: 0;
+    /* Align subheadings with headings */
+    list-style: none;
+}
+
+.footer-subheadings li {
+    font-size: 1rem;
+    color: grey;
+    margin-bottom: 0.3rem;
+    text-align: left;
+}
+
+.footer-subheadings li a {
+    color: grey;
+    text-decoration: none;
+}
+
+.footer-subheadings li a:hover {
+    color: black;
+    text-decoration: underline;
+}

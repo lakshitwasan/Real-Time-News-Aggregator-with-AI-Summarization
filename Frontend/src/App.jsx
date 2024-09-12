@@ -4,13 +4,14 @@ import './App.css';
 import NewsList from './components/News List/NewsList';
 import NavBar from './components/NavBar/NavBar';
 import HomePage from './components/Home/HomePage';
+import Footer from './components/Footer/footer';
 
 function App() {
   return (
     <>
       <Router>
         <NavBar />
-        <div style={{ paddingTop: '10px' }}>
+        <div style={{ paddingTop: '10px', paddingBottom: '50px' }}>
           <Routes>
             {/* Home Page Route */}
             <Route path="/" element={<HomePage />} />
@@ -18,6 +19,7 @@ function App() {
             <Route path="/news" element={<NewsList />} />
           </Routes>
         </div>
+        <Footer />
       </Router>
     </>
   );
