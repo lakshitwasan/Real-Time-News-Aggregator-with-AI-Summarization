@@ -17,27 +17,22 @@ app.get("/news", async (req, res) => {
                 "x-api-key": process.env.NEWS_API_KEY
             },
             params: {
-                categories: req.query.category,
+                categories: req.query.categories,
                 language: "en", // Language of the articles
                 source_countries: "US", // Example source country
                 number: 10, // Number of articles to fetch
             }
         });
 
-        console.log("_________________________________")
-        console.log(response)
-        console.log("_________________________________")
+        // console.log("_________________________________")
+        // console.log(response)
+        // console.log("_________________________________")
 
         // Check if valid news data exists
-        if (response.data && response.data.news) {
-            const filteredArticles = response.data.news.filter(
-                (article) => article.image && article.image !== ""
-            );
-
+        if (response.data.news) {
             res.json({
                 status: "success",
-                totalResults: filteredArticles.length,
-                articles: filteredArticles
+                articles: response.data.news
             });
         } else {
             res.status(404).json({ message: "No articles found" });

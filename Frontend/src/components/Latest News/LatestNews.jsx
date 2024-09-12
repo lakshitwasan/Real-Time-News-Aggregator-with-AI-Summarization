@@ -2,22 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchNews } from '../../services/api';
 import './LatestNews.css';
 
-const LatestNews = () => {
-    const [latestNews, setLatestNews] = useState([]);
-
-    useEffect(() => {
-        const getNews = async () => {
-            const data = await fetchNews('sports');
-            // Trim article descriptions to 20 words and titles to 10 words for consistency
-            const trimmedNews = data.articles.slice(0, 8).map(article => ({
-                ...article,
-                title: article.title.split(" ").slice(0, 10).join(" ") + "...",
-                description: article.text.split(" ").slice(0, 20).join(" ") + "..."
-            }));
-            setLatestNews(trimmedNews);
-        };
-        getNews();
-    }, []);
+const LatestNews = ({ latestNews }) => {
 
     return (
         <div className="latest-news-section mt-5">

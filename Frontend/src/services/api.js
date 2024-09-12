@@ -9,7 +9,7 @@ export const fetchNews = async (category) => {
         });
         return response.data;
     } catch (error) {
-        console.error("Error fetching news:", error);
+        console.error("Error fetching the news (API.js) :", error.response.data);
         return { articles: [] };
     }
 };
