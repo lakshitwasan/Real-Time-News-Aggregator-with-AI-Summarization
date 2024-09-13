@@ -6,6 +6,7 @@ import { fetchNews } from '../../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import axios from 'axios';
+import Article from '../../Pages/Article/Article';
 
 export default function HomePage() {
     const [firstNews, setFirstNews] = useState(null);
@@ -53,6 +54,11 @@ export default function HomePage() {
 
     return (
         <>
+
+            {
+
+                (firstNews && !loadingFirstNews) && <Article article={firstNews} />
+            }
             <div className="container mt-5">
                 <div className="welcome-box p-3 text-center">
                     <p className='welcome-box-header'>WELCOME TO BULLETIN</p>
@@ -125,6 +131,7 @@ export default function HomePage() {
                 ) : (
                     <LatestNews latestNews={latestNews} />
                 )}
+
             </div>
         </>
     );
