@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 const cors = require("cors");
+const mongoose = require("mongoose");
+const authRoutes = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -9,6 +11,21 @@ const REFRESH_INTERVAL = 10 * 60 * 1000; // Refresh every 10 minutes
 const REQUEST_DELAY = 1000; // 1 second delay between API requests
 
 app.use(cors());
+app.use(express.json()); // To parse JSON requests
+app.use("/auth", authRoutes); // Prefix for authentication routes
+
+// MongoDB connection
+mongoose
+    .connect(process.env.MONGODB_URI, {
+        // useNewUrlParser: true,
+        // useUnifiedTopology: true,
+    })
+    .then(() => {
+        console.log("Connected to MongoDB");
+    })
+    .catch((err) => {
+        console.error("Error connecting to MongoDB", err);
+    });
 
 let cachedNewsData = {}; // Cache each category's data separately
 
@@ -17,7 +34,7 @@ const categories = ["technology", "entertainment", "sports", "business", "health
 
 // Function to delay API requests
 function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 // Function to fetch news for a given category
@@ -25,14 +42,14 @@ async function fetchNewsByCategory(category) {
     try {
         const response = await axios.get("https://api.worldnewsapi.com/search-news", {
             headers: {
-                "x-api-key": process.env.NEWS_API_KEY
+                "x-api-key": process.env.NEWS_API_KEY,
             },
             params: {
                 categories: category,
                 language: "en",
                 source_countries: "US",
-                number: 12 // Adjust this number per category (if needed)
-            }
+                number: 12, // Adjust this number per category (if needed)
+            },
         });
 
         if (response.data.news) {
@@ -82,7 +99,7 @@ app.get("/:category", (req, res) => {
 
     res.json({
         status: "success",
-        articles: cachedNewsData[category]
+        articles: cachedNewsData[category],
     });
 });
 
