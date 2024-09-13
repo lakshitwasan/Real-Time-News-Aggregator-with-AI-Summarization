@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { FaBell, FaUserCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './navbar.css';
 
 const NavBar = () => {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                setIsLoggedIn(true);
+            } else {
+                setIsLoggedIn(false);
+            }
+        }, 2000); // 2000 ms = 2 seconds
+
+        // Clean up the interval when the component unmounts
+        return () => clearInterval(intervalId);
+    }, []); // Empty dependency array ensures it only runs once
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        setIsLoggedIn(false);
+    };
+
     return (
         <Navbar expand="lg" className="fixed-top">
             <Container>
@@ -31,17 +52,23 @@ const NavBar = () => {
                             <FaBell size={24} />
                         </Nav.Link>
 
-                        {/* Profile Icon */}
-                        <NavDropdown
-                            title={<FaUserCircle size={30} />}
-                            id="basic-nav-dropdown"
-                            align="end"
-                        >
-                            <NavDropdown.Item href="#profile">Profile</NavDropdown.Item>
-                            <NavDropdown.Item href="#settings">Settings</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
-                        </NavDropdown>
+                        {/* Profile Icon or Login Button */}
+                        {isLoggedIn ? (
+                            <NavDropdown
+                                title={<FaUserCircle size={30} />}
+                                id="basic-nav-dropdown"
+                                align="end"
+                            >
+
+                                <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                            </NavDropdown>
+                        ) : (
+                            <button onClick={() => {
+                                window.location.href = "/login";
+                            }} className="btn btn-danger w-100">
+                                Log in
+                            </button>
+                        )}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

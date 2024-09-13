@@ -22,8 +22,6 @@ router.post("/login", async (req, res) => {
             : user._id
     }, "idontsmoke", { expiresIn: "1h" });
     res.json({ token });
-
-
 });
 
 router.post("/register", async (req, res) => {

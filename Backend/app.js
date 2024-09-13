@@ -7,7 +7,7 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const REFRESH_INTERVAL = 10 * 60 * 1000; // Refresh every 10 minutes
+const REFRESH_INTERVAL = 20 * 60 * 1000; // Refresh every 20 minutes
 const REQUEST_DELAY = 1000; // 1 second delay between API requests
 
 app.use(cors());
