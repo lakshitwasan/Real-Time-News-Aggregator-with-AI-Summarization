@@ -16,7 +16,7 @@ const NavBar = () => {
                     <span className="mx-2 navbar-divider">|</span>
                     <Nav className="navbar-links">
                         {/* LINKING */}
-                        <Nav.Link as={Link} to="/world" className="nav-item-link">World</Nav.Link>
+                        <Nav.Link as={Link} to="/travel" className="nav-item-link">Travel</Nav.Link>
                         <Nav.Link as={Link} to="/technology" className="nav-item-link">Technology</Nav.Link>
                         <Nav.Link as={Link} to="/sports" className="nav-item-link">Sports</Nav.Link>
                     </Nav>

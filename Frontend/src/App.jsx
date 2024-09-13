@@ -7,16 +7,20 @@ import HomePage from './components/Home/HomePage';
 import Footer from './components/Footer/footer';
 
 function App() {
+  let categories = ["sports", "business", "technology", "entertainment", "health", "science", "lifestyle", "travel"];
   return (
     <>
       <Router>
         <NavBar />
-        <div style={{ paddingTop: '10px', paddingBottom: '50px' }}>
+        <div style={{ paddingTop: '10px', paddingBottom: '80px' }}>
           <Routes>
             {/* Home Page Route */}
             <Route path="/" element={<HomePage />} />
-            {/* News Page Route */}
-            <Route path="/news" element={<NewsList />} />
+            {/* Dynamic category routes */}
+
+            {categories.map(category => (
+              <Route key={category} path={`/${category}`} element={<NewsList category={category} />} />
+            ))}
           </Routes>
         </div>
         <Footer />

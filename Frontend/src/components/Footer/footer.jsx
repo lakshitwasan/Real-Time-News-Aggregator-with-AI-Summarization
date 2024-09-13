@@ -17,83 +17,83 @@ export default function Footer() {
                     <i className="fab fa-twitter"></i>
                     <i className="fab fa-instagram"></i>
                 </div>
-                <p className="footer-copyright">Copyright © 2024 BULETIN</p>
+                <p className="footer-copyright">Copyright © 2024 BULLETIN</p>
             </div>
 
             {/* Right Side: Categories and Subheadings */}
             <div className="footer-right">
                 <div className="footer-row">
                     <div className="footer-category">
-                        <h4 className="footer-heading"><Link to="/news">Politics</Link></h4>
+                        <h4 className="footer-heading"><Link to="/lifestyle">Lifestyle</Link></h4>
                         <ul className="footer-subheadings">
-                            <li><Link to="/news">Elections</Link></li>
-                            <li><Link to="/news">Policies</Link></li>
-                            <li><Link to="/news">Diplomacy</Link></li>
+                            <li><Link to="/lifestyle">Elections</Link></li>
+                            <li><Link to="/lifestyle">Policies</Link></li>
+                            <li><Link to="/lifestyle">Diplomacy</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-category">
-                        <h4 className="footer-heading"><Link to="/news">Sports</Link></h4>
+                        <h4 className="footer-heading"><Link to="/sports">Sports</Link></h4>
                         <ul className="footer-subheadings">
-                            <li><Link to="/news">Football</Link></li>
-                            <li><Link to="/news">Tennis</Link></li>
-                            <li><Link to="/news">Cricket</Link></li>
+                            <li><Link to="/sports">Football</Link></li>
+                            <li><Link to="/sports">Tennis</Link></li>
+                            <li><Link to="/sports">Cricket</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-category">
-                        <h4 className="footer-heading"><Link to="/news">Business</Link></h4>
+                        <h4 className="footer-heading"><Link to="/business">Business</Link></h4>
                         <ul className="footer-subheadings">
-                            <li><Link to="/news">Markets</Link></li>
-                            <li><Link to="/news">Startups</Link></li>
-                            <li><Link to="/news">Finance</Link></li>
+                            <li><Link to="/business">Markets</Link></li>
+                            <li><Link to="/business">Startups</Link></li>
+                            <li><Link to="/business">Finance</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-category">
-                        <h4 className="footer-heading"><Link to="/news">Technology</Link></h4>
+                        <h4 className="footer-heading"><Link to="/technology">Technology</Link></h4>
                         <ul className="footer-subheadings">
-                            <li><Link to="/news">AI</Link></li>
-                            <li><Link to="/news">Gadgets</Link></li>
-                            <li><Link to="/news">Software</Link></li>
+                            <li><Link to="/technology">AI</Link></li>
+                            <li><Link to="/technology">Gadgets</Link></li>
+                            <li><Link to="/technology">Software</Link></li>
                         </ul>
                     </div>
                 </div>
 
                 <div className="footer-row">
                     <div className="footer-category">
-                        <h4 className="footer-heading"><Link to="/news">Entertainment</Link></h4>
+                        <h4 className="footer-heading"><Link to="/entertainment">Entertainment</Link></h4>
                         <ul className="footer-subheadings">
-                            <li><Link to="/news">Movies</Link></li>
-                            <li><Link to="/news">TV Shows</Link></li>
-                            <li><Link to="/news">Music</Link></li>
+                            <li><Link to="/entertainment">Movies</Link></li>
+                            <li><Link to="/entertainment">TV Shows</Link></li>
+                            <li><Link to="/entertainment">Music</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-category">
-                        <h4 className="footer-heading"><Link to="/news">Health</Link></h4>
+                        <h4 className="footer-heading"><Link to="/health">Health</Link></h4>
                         <ul className="footer-subheadings">
-                            <li><Link to="/news">Wellness</Link></li>
-                            <li><Link to="/news">Fitness</Link></li>
-                            <li><Link to="/news">Nutrition</Link></li>
+                            <li><Link to="/health">Wellness</Link></li>
+                            <li><Link to="/health">Fitness</Link></li>
+                            <li><Link to="/health">Nutrition</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-category">
-                        <h4 className="footer-heading"><Link to="/news">Science</Link></h4>
+                        <h4 className="footer-heading"><Link to="/science">Science</Link></h4>
                         <ul className="footer-subheadings">
-                            <li><Link to="/news">Space</Link></li>
-                            <li><Link to="/news">Research</Link></li>
-                            <li><Link to="/news">Innovation</Link></li>
+                            <li><Link to="/science">Space</Link></li>
+                            <li><Link to="/science">Research</Link></li>
+                            <li><Link to="/science">Innovation</Link></li>
                         </ul>
                     </div>
 
                     <div className="footer-category">
-                        <h4 className="footer-heading"><Link to="/news">Travel</Link></h4>
+                        <h4 className="footer-heading"><Link to="/travel">Travel</Link></h4>
                         <ul className="footer-subheadings">
-                            <li><Link to="/news">Destinations</Link></li>
-                            <li><Link to="/news">Guides</Link></li>
-                            <li><Link to="/news">Experiences</Link></li>
+                            <li><Link to="/travel">Destinations</Link></li>
+                            <li><Link to="/travel">Guides</Link></li>
+                            <li><Link to="/travel">Experiences</Link></li>
                         </ul>
                     </div>
                 </div>

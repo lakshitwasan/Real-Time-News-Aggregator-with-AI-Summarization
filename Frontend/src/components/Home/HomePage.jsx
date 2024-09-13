@@ -1,9 +1,11 @@
+
 import React, { useState, useEffect } from 'react';
 import './HomePage.css';
 import LatestNews from '../Latest News/LatestNews';
 import { fetchNews } from '../../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import axios from 'axios';
 
 export default function HomePage() {
     const [firstNews, setFirstNews] = useState(null);
@@ -12,29 +14,42 @@ export default function HomePage() {
     const [loadingLatestNews, setLoadingLatestNews] = useState(true);
 
     useEffect(() => {
-        const getFirstNews = async () => {
-            // Fetch technology news first
-            const data = await fetchNews("technology");
-            const firstArticle = data.articles[0];
-            setFirstNews(firstArticle);
-            setLoadingFirstNews(false);
+        const getNews = async () => {
+            try {
+                // Fetch technology news
+                const techResponse = await axios.get('http://localhost:5000/technology');
+                const firstArticle = techResponse.data.articles[0];
+                setFirstNews(firstArticle);
 
-            // Introduce a delay before fetching sports news
-            await new Promise(resolve => setTimeout(resolve, 1000)); // 1-second delay
+                // Fetch sports news
+                const sportsResponse = await axios.get('http://localhost:5000/sports');
+                const trimmedNews = sportsResponse.data.articles.slice(0, 8).map(article => ({
+                    ...article,
+                    title: article.title.split(" ").slice(0, 10).join(" ") + "...",
+                    description: article.text.split(" ").slice(0, 20).join(" ") + "..."
+                }));
+                setLatestNews(trimmedNews);
 
-            // Fetch sports news
-            const data2 = await fetchNews("sports");
-            const trimmedNews = data2.articles.slice(0, 8).map(article => ({
-                ...article,
-                title: article.title.split(" ").slice(0, 10).join(" ") + "...",
-                description: article.text.split(" ").slice(0, 20).join(" ") + "..."
-            }));
-            setLatestNews(trimmedNews);
-            setLoadingLatestNews(false);
+                // Stop refreshing once the data is fetched
+                setLoadingFirstNews(false);
+                setLoadingLatestNews(false);
+
+            } catch (error) {
+                console.error("Error fetching news:", error);
+            }
         };
 
-        getFirstNews();
-    }, []);
+        // Set an interval to fetch news every 3 seconds
+        const intervalId = setInterval(() => {
+            if (loadingFirstNews || loadingLatestNews) {
+                getNews(); // Fetch the news again
+            }
+        }, 2000);
+
+        // Cleanup: Clear interval when data is fetched or component unmounts
+        return () => clearInterval(intervalId);
+
+    }, [loadingFirstNews, loadingLatestNews]);
 
     return (
         <>
