@@ -18,9 +18,24 @@ const Login = () => {
                 username,
                 password,
             });
-            setToken(response.data.token);
-            localStorage.setItem("token", response.data.token);
+
+            const token = response.data.token;
+
+            // Store token and timestamp in localStorage
+            const timestamp = new Date().getTime();
+            localStorage.setItem("token", token);
+            localStorage.setItem("tokenTimestamp", timestamp);
+
+            setToken(token);
             navigate("/");
+
+            // Schedule token removal after 1 hour
+            setTimeout(() => {
+                localStorage.removeItem("token");
+                localStorage.removeItem("tokenTimestamp");
+                setToken(null);
+                console.log("Token has been cleared after 1 hour.");
+            }, 60 * 60 * 1000); // 1 hour in milliseconds
         } catch (error) {
             console.error("Authentication failed:", error);
             setUsername("");
@@ -43,6 +58,22 @@ const Login = () => {
             return () => clearTimeout(timer);
         }
     }, [errorMessage]);
+
+    // Check if token has expired when the component mounts
+    useEffect(() => {
+        const tokenTimestamp = localStorage.getItem("tokenTimestamp");
+        if (tokenTimestamp) {
+            const currentTime = new Date().getTime();
+            const tokenAge = currentTime - tokenTimestamp;
+
+            if (tokenAge > 60 * 60 * 1000) { // If the token is older than 1 hour
+                localStorage.removeItem("token");
+                localStorage.removeItem("tokenTimestamp");
+                setToken(null);
+                console.log("Token has expired and been cleared.");
+            }
+        }
+    }, [setToken]);
 
     return (
         <div className="d-flex justify-content-center align-items-center vh-100 bg-light">
