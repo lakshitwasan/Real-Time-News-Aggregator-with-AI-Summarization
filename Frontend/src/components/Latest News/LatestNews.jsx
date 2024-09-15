@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { fetchNews } from '../../services/api';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LatestNews.css';
 
 const LatestNews = ({ latestNews }) => {
+    const navigate = useNavigate();
+
+    const handleReadMore = (article) => {
+        navigate('/article', { state: { article } }); // Pass article via state
+    };
 
     return (
         <div className="latest-news-section mt-5">
@@ -22,18 +27,12 @@ const LatestNews = ({ latestNews }) => {
                                 style={{ height: '150px', objectFit: 'cover' }}
                             />
                             <div className="card-body d-flex flex-column">
-                                {/* Trimmed and left-aligned heading */}
                                 <h5 className="card-title text-left">{article.title}</h5>
-
-                                {/* Justified content with margin-bottom */}
                                 <p className="card-text text-justify" style={{ textAlign: 'justify' }}>
                                     {article.description}
                                 </p>
-                                {/* Smaller Button with margin from content */}
-                                <a
-                                    href={article.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                <button
+                                    onClick={() => handleReadMore(article)} // Navigate on click
                                     className="btn btn-theme mt-auto"
                                     style={{
                                         backgroundColor: 'white',
@@ -48,7 +47,7 @@ const LatestNews = ({ latestNews }) => {
                                     }}
                                 >
                                     Read
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>

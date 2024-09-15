@@ -9,6 +9,7 @@ import Footer from './components/Footer/footer';
 import Login from './components/login/login';
 import Registration from './components/signup/registration';
 import Dashboard from './components/Dashboard';
+import Article from './Pages/Article/Article';
 
 function App() {
   let categories = ["sports", "business", "technology", "entertainment", "health", "science", "lifestyle", "travel"];
@@ -30,6 +31,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Registration />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/article" element={<Article />} />
             </Routes>
 
           </div>

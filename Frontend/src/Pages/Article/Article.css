@@ -1,0 +1,29 @@
+.summary {
+    /* border: 1px solid #303030; */
+    background-color: #FFF6F6;
+    border-radius: 8px;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: justify;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.visit-article-btn {
+    color: red !important;
+    font-weight: bold !important;
+    background-color: white !important;
+    border: 2px solid red !important;
+    display: inline-block !important;
+    margin-top: 10px !important;
+
+}
+
+.visit-article-btn:hover {
+    color: white !important;
+    font-weight: bold !important;
+    background-color: red !important;
+    text-decoration: none !important;
+}
