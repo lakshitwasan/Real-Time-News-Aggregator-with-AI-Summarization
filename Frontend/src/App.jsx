@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './components/AuthContext';
 import NewsList from './Pages/News List/NewsList';
-import NavBar from './Pages/NavBar/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import HomePage from './Pages/Home/HomePage';
-import Footer from './Pages/Footer/footer';
+import Footer from './components/Footer/footer';
 import Login from './Pages/login/login';
 import Registration from './Pages/signup/registration';
 import Dashboard from './components/Dashboard';
 import Article from './Pages/Article/Article';
+import ErrorPage from './Pages/error/errorPage';
 
 function App() {
   let categories = ["sports", "business", "technology", "entertainment", "health", "science", "lifestyle", "travel"];
@@ -30,8 +31,8 @@ function App() {
               ))}
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Registration />} />
-              <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/article" element={<Article />} />
+              <Route path="*" element={<ErrorPage />} />
             </Routes>
 
           </div>

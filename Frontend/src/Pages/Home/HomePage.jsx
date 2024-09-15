@@ -8,6 +8,9 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import axios from 'axios';
 import Article from '../Article/Article';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function HomePage() {
     const [firstNews, setFirstNews] = useState(null);
     const [latestNews, setLatestNews] = useState([]);
@@ -49,6 +52,18 @@ export default function HomePage() {
     }, [loadingFirstNews, loadingLatestNews]);
 
     // Updated Read More button to navigate to /article with state
+
+    const notify = () => {
+        toast.success('You have successfully subscribed to our newsletter!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
     return (
         <>
             {firstNews && !loadingFirstNews && <Article article={firstNews} />}
@@ -87,24 +102,46 @@ export default function HomePage() {
                                     <h3 className="first-news-title mb-3">{firstNews.title}</h3>
                                     <p className="first-news-description">{firstNews.summary}</p>
                                 </div>
-                                <button
-                                    onClick={() => navigate('/article', { state: { article: firstNews } })}
-                                    className="btn btn-theme mt-3"
-                                    style={{
-                                        backgroundColor: 'white',
-                                        color: 'red',
-                                        border: '2px solid red',
-                                        fontWeight: 'bold',
-                                        width: '120px',
-                                        fontSize: '0.85rem',
-                                        padding: '8px',
-                                        marginTop: '20px',
-                                        textAlign: 'center',
-                                        transition: 'background-color 0.3s ease, color 0.3s ease'
-                                    }}
-                                >
-                                    Read More
-                                </button>
+                                <div className='row'>
+
+                                    <button
+                                        onClick={() => navigate('/article', { state: { article: firstNews } })}
+                                        className="btn btn-theme mt-3"
+                                        style={{
+                                            backgroundColor: 'white',
+                                            color: 'red',
+                                            border: '2px solid red',
+                                            fontWeight: 'bold',
+                                            width: '120px',
+                                            fontSize: '0.85rem',
+                                            padding: '8px',
+                                            marginTop: '20px',
+                                            textAlign: 'center',
+                                            marginRight: "10px",
+                                            transition: 'background-color 0.3s ease, color 0.3s ease'
+                                        }}
+                                    >
+                                        Read More
+                                    </button>
+                                    <button
+                                        onClick={notify}
+                                        className="btn btn-theme mt-3"
+                                        style={{
+                                            backgroundColor: 'white',
+                                            color: 'red',
+                                            border: '2px solid red',
+                                            fontWeight: 'bold',
+                                            width: '120px',
+                                            fontSize: '0.85rem',
+                                            padding: '8px',
+                                            marginTop: '20px',
+                                            textAlign: 'center',
+                                            transition: 'background-color 0.3s ease, color 0.3s ease'
+                                        }}
+                                    >
+                                        Subscribe
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     )
@@ -116,6 +153,7 @@ export default function HomePage() {
                     <LatestNews latestNews={latestNews} />
                 )}
             </div>
+            <ToastContainer />
         </>
     );
 }
