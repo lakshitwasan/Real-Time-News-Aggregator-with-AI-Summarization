@@ -7,18 +7,26 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const REFRESH_INTERVAL = 20 * 60 * 1000; // Refresh every 20 minutes
+const REFRESH_INTERVAL = 8 * 60 * 60 * 1000; // Refresh every 8 hours
 const REQUEST_DELAY = 1000; // 1 second delay between API requests
 
 app.use(cors());
 app.use(express.json()); // To parse JSON requests
 app.use("/auth", authRoutes); // Prefix for authentication routes
 
+// Define a schema for the news articles
+const newsSchema = new mongoose.Schema({
+    category: String,
+    articles: Array,
+    updatedAt: { type: Date, default: Date.now }
+});
+
+// Create a model from the schema
+const News = mongoose.model("News", newsSchema);
+
 // MongoDB connection
 mongoose
     .connect(process.env.MONGODB_URI, {
-        // useNewUrlParser: true,
-        // useUnifiedTopology: true,
     })
     .then(() => {
         console.log("Connected to MongoDB");
@@ -26,8 +34,6 @@ mongoose
     .catch((err) => {
         console.error("Error connecting to MongoDB", err);
     });
-
-let cachedNewsData = {}; // Cache each category's data separately
 
 // List of categories to fetch
 const categories = ["technology", "entertainment", "sports", "business", "health", "science", "lifestyle", "travel"];
@@ -65,45 +71,53 @@ async function fetchNewsByCategory(category) {
     }
 }
 
-// Function to fetch news for all categories sequentially with a delay
-async function fetchAndCacheAllNews() {
+// Function to fetch news for all categories and store in MongoDB
+async function fetchAndStoreAllNews() {
     const startTime = Date.now(); // Capture start time
-    console.log("Fetching and caching news for all categories...");
+    console.log("Fetching and storing news for all categories...");
 
     for (const category of categories) {
         const news = await fetchNewsByCategory(category);
-        cachedNewsData[category] = news;
+
+        // Store or update the news data in MongoDB
+        await News.findOneAndUpdate(
+            { category: category },
+            { category: category, articles: news, updatedAt: new Date() },
+            { upsert: true, new: true }
+        );
+
         await delay(REQUEST_DELAY); // Delay between each API request
     }
 
     const endTime = Date.now(); // Capture end time
     const timeTaken = endTime - startTime; // Calculate time taken
 
-    console.log("News data cached successfully.");
-    console.log(`Data fetching started at: ${new Date(startTime).toLocaleString()}`);
-    console.log(`Data fetching completed at: ${new Date(endTime).toLocaleString()}`);
+    console.log("News data stored successfully.");
+    console.log(`Data fetching and storing started at: ${new Date(startTime).toLocaleString()}`);
+    console.log(`Data fetching and storing completed at: ${new Date(endTime).toLocaleString()}`);
     console.log(`Total time taken: ${(timeTaken / 1000).toFixed(2)} seconds`);
 }
 
-// Call the function once at startup and set an interval to refresh the cache
-fetchAndCacheAllNews();
-setInterval(fetchAndCacheAllNews, REFRESH_INTERVAL);
+// Call the function once at startup and set an interval to refresh the data
+fetchAndStoreAllNews();
+setInterval(fetchAndStoreAllNews, REFRESH_INTERVAL);
 
-// Route to serve news by category
-app.get("/:category", (req, res) => {
+// Route to serve news by category from MongoDB
+app.get("/:category", async (req, res) => {
     const { category } = req.params;
 
-    if (!cachedNewsData[category] || !cachedNewsData[category].length) {
+    const newsData = await News.findOne({ category: category });
+    if (!newsData || !newsData.articles.length) {
         return res.status(404).json({ message: `No articles found for category: ${category}` });
     }
 
     res.json({
         status: "success",
-        articles: cachedNewsData[category],
+        articles: newsData.articles,
     });
 });
 
-// Root route to confirm backend is running
+// Root  
 app.get("/", (req, res) => {
     res.send("Backend is running");
 });
