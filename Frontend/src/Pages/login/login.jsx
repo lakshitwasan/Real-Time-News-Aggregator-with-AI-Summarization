@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
-import { AuthContext } from "../AuthContext";
+import { AuthContext } from "../../components/AuthContext";
 import { useNavigate } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 

@@ -6,7 +6,7 @@ import { fetchNews } from '../../services/api';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import axios from 'axios';
-import Article from '../../Pages/Article/Article';
+import Article from '../Article/Article';
 
 export default function HomePage() {
     const [firstNews, setFirstNews] = useState(null);

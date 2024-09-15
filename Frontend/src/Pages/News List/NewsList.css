@@ -1,0 +1,38 @@
+.custom-img {
+    max-height: 200px;
+    /* Ensures the image height is consistent */
+    object-fit: cover;
+    /* Ensures the image covers the card space while maintaining aspect ratio */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.flex-grow-1 {
+    flex-grow: 1;
+}
+
+.read-more-btn {
+    color: red !important;
+    font-weight: bold !important;
+    background-color: white !important;
+    border: 2px solid red !important;
+    display: inline-block !important;
+    margin-top: 10px !important;
+
+}
+
+.read-more-btn:hover {
+    color: white !important;
+    font-weight: bold !important;
+    background-color: red !important;
+    text-decoration: none !important;
+}

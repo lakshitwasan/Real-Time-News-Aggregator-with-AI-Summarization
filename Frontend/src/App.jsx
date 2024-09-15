@@ -2,12 +2,12 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AuthProvider } from './components/AuthContext';
-import NewsList from './components/News List/NewsList';
-import NavBar from './components/NavBar/NavBar';
-import HomePage from './components/Home/HomePage';
-import Footer from './components/Footer/footer';
-import Login from './components/login/login';
-import Registration from './components/signup/registration';
+import NewsList from './Pages/News List/NewsList';
+import NavBar from './Pages/NavBar/NavBar';
+import HomePage from './Pages/Home/HomePage';
+import Footer from './Pages/Footer/footer';
+import Login from './Pages/login/login';
+import Registration from './Pages/signup/registration';
 import Dashboard from './components/Dashboard';
 import Article from './Pages/Article/Article';
 

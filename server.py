@@ -42,7 +42,7 @@ def summarize():
         print(f"Tokenized inputs: {inputs}")
 
         # Generate the summary
-        summary = summarizer(data, max_length=100,
+        summary = summarizer(data, max_length=200,
                              min_length=5, do_sample=False)
 
         # Return the summary

@@ -47,7 +47,7 @@ const NewsList = ({ category }) => {
                                 <p className="card-text flex-grow-1">{article.summary}</p>
                                 <button
                                     onClick={() => handleReadMore(article)} // Navigate on click
-                                    className="btn btn-primary mt-auto"
+                                    className="btn mt-auto read-more-btn "
                                 >
                                     Read more
                                 </button>
