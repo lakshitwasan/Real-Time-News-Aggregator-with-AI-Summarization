@@ -52,4 +52,60 @@ router.post("/register", async (req, res) => {
     }
 });
 
+router.post("/preferences/:userId", async (req, res) => {
+    try {
+        const { preferences } = req.body;
+        const userId = req.params.userId;
+        const user = await User.findById(userId);
+
+        if (!user) {
+            return res.status(404).send("User not found");
+        }
+
+        if (preferences.length > 2) {
+            return res.status(400).send("Maximum 2 preferences allowed");
+        }
+
+        user.preferences = preferences;
+        await user.save();
+
+        res.status(200).send("Preferences updated successfully");
+    } catch (error) {
+        res.status(500).send("Server error");
+    }
+});
+
+router.get("/preferArticle/:userId", async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const user = await User.findById(userId);
+
+        if (!user || user.preferences.length === 0) {
+            return res.status(400).send("User preferences not found");
+        }
+
+        // Fetch news articles based on preferences
+        const preferences = user.preferences.join(",");
+        const newsApiUrl = `https://api.worldnewsapi.com/search-news?category=${preferences}`;
+
+        const response = await axios.get(newsApiUrl, {
+            headers: {
+                "x-api-key": process.env.NEWS_API_KEY,
+            },
+            params: {
+                language: "en",
+                source_countries: "US",
+                number: 12, // Adjust this number per category (if needed)
+            },
+        });
+
+        const articles = response.data.news;
+        console.log(response.data.news);
+        res.status(200).send(articles);
+    } catch (error) {
+        console.error("Error fetching news articles:", error);
+        res.status(500).send("Error fetching news articles");
+    }
+});
+
 module.exports = router;
